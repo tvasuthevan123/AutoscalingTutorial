@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-deployment
+  labels:
+    app: consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+        - name: autoscalingtutorial
+          image: autoscalingtutorial:latest
+          imagePullPolicy: Never
+          env:
+            - name: RMQ_IP
+              valueFrom:
+                secretKeyRef:
+                  name: rmq-secrets
+                  key: rmq_ip
+            - name: RMQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: hello-world-default-user
+                  key: username
+            - name: RMQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: hello-world-default-user
+                  key: password
