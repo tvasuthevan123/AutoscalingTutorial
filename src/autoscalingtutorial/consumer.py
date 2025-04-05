@@ -1,22 +1,7 @@
 #!/usr/bin/env python
 import pika, sys, os, time
 
-def get_rmq_addr():
-    addr = os.getenv("RMQ_IP")
-
-    if not addr:
-        raise Exception("RMQ_IP environment variable not set")
-
-    return addr
-
-def get_rmq_creds():
-    user = os.getenv("RMQ_USER")
-    password = os.getenv("RMQ_PASS")
-
-    if not user or not password:
-        raise Exception("RMQ_USER/RMQ_PASSWORD environment variables not set")
-
-    return user,password
+from autoscalingtutorial.utils import get_rmq_addr, get_rmq_creds
 
 def main():
     host = get_rmq_addr()
@@ -36,7 +21,9 @@ def main():
 
     def callback(ch, method, properties, body):
         print(f" [x] Received {body}")
-        time.sleep(5)
+
+        # Simulate processing delay
+        time.sleep(0.2)
 
     channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
 
