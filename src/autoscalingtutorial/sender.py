@@ -9,7 +9,7 @@ def main():
     credentials = pika.PlainCredentials(user, password)
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(
-            host=host.strip(), 
+            host=host.strip(),
             credentials=credentials
         )
     )
@@ -17,7 +17,7 @@ def main():
 
     channel.queue_declare(queue='task_queue', durable=True)
 
-    for i in range(1000):
+    for i in range(100):
         channel.basic_publish(exchange='', routing_key='task_queue', body=(body:=f'Hello World {i}'))
         print(f"Sent {body}")
 
