@@ -1,0 +1,29 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: consumer-scaled-object
+spec:
+  scaleTargetRef:
+    name: consumer-deployment
+  pollingInterval: 5
+  cooldownPeriod: 60
+  initialCooldownPeriod: 120
+  minReplicaCount: 0
+  maxReplicaCount: 150
+  fallback:
+    failureThreshold: 3
+    replicas: 6
+  advanced:
+    restoreToOriginalReplicaCount: true
+  triggers:
+    - type: rabbitmq
+      metadata:
+        protocol: amqp
+        mode: QueueLength # QueueLength or MessageRate
+        value: "3"
+        activationValue: "1"
+        queueName: task_queue
+        host: amqp://hello-world.default.svc.cluster.local
+        usernameFromEnv: RMQ_USER # Optional. You can use this instead of TriggerAuthentication
+        passwordFromEnv: RMQ_PASS # Optional. You can use this instead of TriggerAuthentication
+        unsafeSsl: "true"

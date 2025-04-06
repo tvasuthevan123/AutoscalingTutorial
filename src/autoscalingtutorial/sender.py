@@ -17,7 +17,7 @@ def main():
 
     channel.queue_declare(queue='task_queue', durable=True)
 
-    for i in range(100):
+    for i in range(1000):
         channel.basic_publish(exchange='', routing_key='task_queue', body=(body:=f'Hello World {i}'))
         print(f"Sent {body}")
 
