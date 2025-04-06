@@ -1,5 +1,7 @@
 FROM ghcr.io/astral-sh/uv:python3.12-alpine
 
+ENV PYTHONUNBUFFERED=1
+
 COPY src/ src/
 COPY pyproject.toml pyproject.toml
 COPY .python-version .python-version

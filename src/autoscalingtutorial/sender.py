@@ -15,10 +15,10 @@ def main():
     )
     channel = connection.channel()
 
-    channel.queue_declare(queue='hello')
+    channel.queue_declare(queue='task_queue', durable=True)
 
     for i in range(100):
-        channel.basic_publish(exchange='', routing_key='hello', body=(body:=f'Hello World {i}'))
+        channel.basic_publish(exchange='', routing_key='task_queue', body=(body:=f'Hello World {i}'))
         print(f"Sent {body}")
 
     connection.close()
