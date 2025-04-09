@@ -1,6 +1,6 @@
 # Pre-requisites
 
-1. Install minikube onto your computer [here](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) and start a cluster by calling `minikube start`. You will also need **kubectl** installed.
+1. Install minikube onto your computer [here](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) and start a cluster by calling `minikube start`. You will also need **kubectl** installed. Optionally, you should install k9s to follow with the steps to monitor the cluster easier.
 
 2. Install rabbitmq onto your cluster by running the steps from [here](https://www.rabbitmq.com/kubernetes/operator/quickstart-operator#install-the-rabbitmq-cluster-operator)
 
