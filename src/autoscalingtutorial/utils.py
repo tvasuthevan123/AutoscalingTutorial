@@ -9,6 +9,7 @@ def get_rmq_addr():
 
     return addr
 
+
 def get_rmq_creds():
     user = os.getenv("RMQ_USER")
     password = os.getenv("RMQ_PASS")
@@ -16,4 +17,4 @@ def get_rmq_creds():
     if not user or not password:
         raise Exception("RMQ_USER/RMQ_PASSWORD environment variables not set")
 
-    return user,password
+    return user, password
