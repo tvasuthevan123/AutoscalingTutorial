@@ -6,7 +6,7 @@
 
 3. Setup a rabbitmq cluster on your cluster by running the steps [here](https://www.rabbitmq.com/kubernetes/operator/quickstart-operator#hello-rabbitmq)
 
-4. Portforward the rabbitmq cluster service (port 15672 and port 5672) to your localhost so you can access the UI from your browser http://localhost:15672 and to allow the sender script to put messages on the bus. It's easiest if you have `k9s` installed, so you can
+4. Portforward the rabbitmq cluster service (port 15672 and port 5672) to your localhost so you can access the UI from your browser http://localhost:15672 and to allow the sender script to put messages on the bus. It's easiest if you have `k9s` installed, so you can more easily portforward the rabbitmq service created by following the tutorial link above.
 
 - navigate to the `hello-world` service
 - press `shift+f`
